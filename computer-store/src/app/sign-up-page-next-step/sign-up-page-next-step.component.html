@@ -1,0 +1,27 @@
+<form [formGroup]='registerForm' (ngSubmit)='onSubmit()'>
+    <div class="form-group">
+        <label>city</label>
+        <input type="text" formControlName='city' [ngClass]='{ "is-invalid": submitted && f.city.errors }' required minlength="9" class="form-control"/>
+        <div *ngIf='submitted && f.city.errors' class="invalid-feedback">
+            <div *ngIf='f.city.errors.required'>city is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>street</label>
+        <input type="text" formControlName='street' [ngClass]='{ "is-invalid": submitted && f.street.errors }' class="form-control">
+        <div *ngIf='submitted && f.street.errors' class="invalid-feedback">
+            <div *ngIf='f.street.errors.required'>street is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" formControlName='fullName' [ngClass]='{"is-invalid": submitted && f.fullName.errors}' class="form-control">
+        <div *ngIf='submitted && f.fullName.errors' class="invalid-feedback">
+            <div *ngIf='f.fullname.errors.required'>Full name is required</div>
+        </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+        <button [disabled]='f.city.errors && f.street.errors && f.fullName.errors'>Submit</button>
+    </div>
+</form>

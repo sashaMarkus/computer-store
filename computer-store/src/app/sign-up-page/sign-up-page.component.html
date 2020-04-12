@@ -1,0 +1,35 @@
+<form [formGroup]='registerForm' (ngSubmit)='onSubmit()'>
+    <div class="form-group">
+        <label for='id'>Id</label>
+        <input type="number" formControlName='id' [ngClass]='{ "is-invalid": submitted && f.id.errors }' class="form-control"/>
+        <div *ngIf='submitted && f.id.errors' class="invalid-feedback">
+            <div *ngIf='submitted && f.id.errors.required'>id is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">email</label>
+        <input type="email" formControlName='email' [ngClass]='{ "is-invalid":submitted &&  f.email.errors }' class="form-control">
+        <div *ngIf='submitted && f.email.errors' class="invalid-feedback">
+            <div *ngIf='submitted && f.email.errors.required'>email is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">password</label>
+        <input type="password" formControlName='password' [ngClass]='{"is-invalid":submitted &&  f.password.errors}' class="form-control">
+        <div *ngIf='submitted && f.password.errors' class="invalid-feedback">
+            <div *ngIf='submitted && f.password.errors.required'>password is required</div>
+            <div *ngIf='submitted && f.password.errors.minLength'>length is too short</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="confirmPassword">confirm password</label>
+        <input type="password" formControlName='confirmPassword' [ngClass]='{"is-invalid":submitted &&  f.confirmPassword.errors}' class="form-control">
+        <div *ngIf='submitted && f.confirmPassword.errors' class="invalid-feedback">
+            <div *ngIf='submitted && f.confirmPassword.errors.required'>password confirmation is required</div>
+            <div *ngIf='submitted && f.confirmPassword.errors.minLength'>length is too short</div>
+        </div>
+    </div><br><br>
+    <div class="form-group">
+        <button>Next</button>
+    </div>
+</form>

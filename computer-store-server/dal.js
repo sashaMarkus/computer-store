@@ -21,6 +21,17 @@ function readAll(query, callback) {
     })
 }
 
+function createOne(query, callback) {
+    connection.query(query, (err) => {
+        if(err) {
+            callback(err);
+        } else {
+            callback(null);
+        }
+    })
+}
+
 module.exports = {
-    readAll: readAll
+    readAll: readAll,
+    createOne: createOne
 }

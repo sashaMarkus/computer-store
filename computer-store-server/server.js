@@ -10,14 +10,30 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/users', (req, res) => {
-    usersBl.getUsers((err,allUsers) =>{
-        if(err) {
+    usersBl.getUsers((err, allUsers) => {
+        if (err) {
             return res.status(500).send();
         } else {
             return res.send(allUsers);
         }
     })
 })
+
+app.post('/users', (req, res) => {
+    console.log('im working');
+    const userToAdd = req.body;
+    //userToAdd.id = Number(userToAdd.id);
+    const newUserToAdd = new userModel.User(0,userToAdd.firstName, userToAdd.lastName, userToAdd.email, userToAdd.password, userToAdd.city, userToAdd.street, userToAdd.role);
+    usersBl.createOneUser(newUserToAdd, (err ) => {
+        if (err) {
+            return res.status(500).send();
+        }
+        else {
+            return res.send(newUserToAdd);
+        }
+    })
+})
+
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Example app listening on port ${process.env.PORT || PORT}!`);

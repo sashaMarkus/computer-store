@@ -15,6 +15,26 @@ function getUsers(callback) {
     })
 }
 
+function createOneUser(userToAdd, callback) {
+    console.log('works');
+    console.log(userToAdd);
+    //const userToAdd = {id, first_name, last_name, email, password, city, street, role};
+    const query =`insert into ${table} (first_name, last_name, email, password, city, street, role) values 
+    ('${userToAdd.firstName}', '${userToAdd.lastName}', '${userToAdd.email}', '${userToAdd.password}', '${userToAdd.city}', '${userToAdd.street}', ${userToAdd.role})`
+    console.log(query);
+    dal.createOne(query, (err) => {
+        if(err){
+            callback(err);
+        }else {
+            callback(null);
+        }
+    })
+}
+
+function getOneUser(){
+    
+}
 module.exports = {
-    getUsers: getUsers
+    getUsers: getUsers,
+    createOneUser: createOneUser
 }
