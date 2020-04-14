@@ -17,7 +17,7 @@ export class SignUpPageNextStepComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       city: ['', Validators.required],
       street: ['', Validators.required],
-      FullName: ['', Validators.required, Validators.minLength(30)]
+      fullName: ['', Validators.required, Validators.maxLength(30)]
     })
   }
 
