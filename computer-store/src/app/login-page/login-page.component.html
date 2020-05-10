@@ -1,6 +1,29 @@
-<div>
-    <input type="text" placeholder="UserName"><br><br>
-    <input type="number" placeholder="password"><br><br>
-    <button (click)='onClick()'>Login</button>
-    <a routerLink='/sign-up-page' routerLinkActive="active">Sign Up</a>
+<div class="card m-3 col-6">
+    <h5 class="card-header">Login</h5>
+    <div class="card-body">
+        <form [formGroup]='loginForm' (ngSubmit)='onSubmit()'>
+            <div class="form-group">
+                <div class="form-group col">
+                    <label>User Name</label>
+                    <input type="text" formControlName='userName' [ngClass]='{ "is-invalid": submitted && f.userName.errors }'
+                        class="form-control" />
+                    <div *ngIf='submitted && f.userName.errors' class="invalid-feedback">
+                        <div *ngIf='f.userName.errors.required'>user name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label>password</label>
+                    <input type="password" formControlName='password'
+                        [ngClass]='{"is-invalid":submitted &&  f.password.errors}' class="form-control">
+                    <div *ngIf='submitted && f.password.errors' class="invalid-feedback">
+                        <div *ngIf='f.password.errors.required'>Password is required</div>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button class='btn btn-primary'>Login</button>
+                    <button class='btn btn-primary'>Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
